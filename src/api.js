@@ -15,15 +15,9 @@ export const fetchArticles = (article_id) => {
   }
 };
 
-// export const fetchArticles = (article_id) => {
-//   return api
-//     .get("/articles", {
-//       params: {
-//         type: article_id,
-//       },
-//     })
-//     .then((response) => {
-//       // console.log(response);
-//       return response.data;
-//     });
-// };
+export const fetchComments = (article_id) => {
+  return api.get(`/articles/${article_id}/comments`).then((response) => {
+    console.log(response);
+    return response.data;
+  });
+};
