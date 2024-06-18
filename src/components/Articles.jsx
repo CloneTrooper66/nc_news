@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { fetchArticles } from "../api";
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -14,22 +16,25 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function Articles() {
   const [articles, setArticles] = useState([]);
+  const { article_id } = useParams();
 
   useEffect(() => {
-    fetchArticles()
+    fetchArticles(article_id)
       .then((data) => {
         setArticles(data);
       })
       .catch((error) => {
         console.error("Error fetching articles:", error);
       });
-  }, []);
+  }, [article_id]);
 
   return (
     <div className="articles-wrapper">
       {articles.map((article) => (
         <article className="article-container" key={article.article_id}>
-          <p className="article-title">{article.title}</p>
+          <Link to={`/articles/${article.article_id}`}>
+            <p className="article-title">{article.title}</p>
+          </Link>
           <img
             src={article.article_img_url}
             alt={article.title}
