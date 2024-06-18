@@ -13,8 +13,10 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 const pages = ["Home", "Topics", "Articles"];
-const settings = ["Profile", "Account", "Logout"];
+const settings = ["Profile", "Logout"];
+
 export default function Header() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -116,7 +118,8 @@ export default function Header() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                component={Link}
+                to={`/${page.toLowerCase()}`}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}

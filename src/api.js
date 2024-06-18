@@ -5,6 +5,6 @@ const api = axios.create({
 
 export const fetchArticles = () => {
   return api.get("/articles").then((response) => {
-    return response.data.articles;
+    return response.data;
   });
 };

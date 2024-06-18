@@ -6,5 +6,9 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
 export default function Home() {
-  return <></>;
+  return (
+    <>
+      <h1>Welcome!!!</h1>
+    </>
+  );
 }
