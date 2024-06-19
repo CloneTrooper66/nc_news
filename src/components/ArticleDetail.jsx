@@ -5,14 +5,13 @@ import "ldrs/leapfrog";
 import Loading from "./Loading";
 import ErrorComponent from "./ErrorComponent";
 import Comments from "./Comments";
-
+import CommentForm from "./CommentForm";
 export default function ArticleDetail() {
   const { article_id } = useParams();
   const [article, setArticle] = useState(null);
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  //const [votes, setVotes] = useState(0);
 
   const handleVote = (inc_votes) => {
     const newVotes = article.votes + inc_votes;
@@ -41,6 +40,10 @@ export default function ArticleDetail() {
       });
   }, [article_id]);
 
+  const addComment = (newComment) => {
+    setComments([...comments, newComment]);
+  };
+
   if (error) {
     return <ErrorComponent message={error.message} />;
   }
@@ -62,6 +65,7 @@ export default function ArticleDetail() {
       <p>Created on {new Date(article.created_at).toLocaleDateString()}</p>
       <h2>Comments</h2>
       <Comments comments={comments} />
+      <CommentForm article_id={article_id} addComment={addComment} />
     </div>
   );
 }
