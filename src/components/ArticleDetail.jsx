@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchArticles, fetchComments } from "../api";
+import { fetchArticles, fetchComments, updateArticleVotes } from "../api";
 import "ldrs/leapfrog";
 import Loading from "./Loading";
 import ErrorComponent from "./ErrorComponent";
@@ -11,8 +11,16 @@ export default function ArticleDetail() {
   const [article, setArticle] = useState(null);
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
   const [error, setError] = useState(null);
+  //const [votes, setVotes] = useState(0);
+
+  const handleVote = (inc_votes) => {
+    const newVotes = article.votes + inc_votes;
+    setArticle({ ...article, votes: newVotes });
+    updateArticleVotes(article_id, inc_votes).catch((error) => {
+      setArticle({ ...article, votes: article.votes - inc_votes });
+    });
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -45,6 +53,12 @@ export default function ArticleDetail() {
       <img src={article.article_img_url} alt={article.title} />
       <p>{article.body}</p>
       <p>Total Votes: {article.votes}</p>
+      <button className="like-button" onClick={() => handleVote(1)}>
+        Like
+      </button>
+      <button className="dislike-button" onClick={() => handleVote(-1)}>
+        Dislike
+      </button>
       <p>Created on {new Date(article.created_at).toLocaleDateString()}</p>
       <h2>Comments</h2>
       <Comments comments={comments} />
