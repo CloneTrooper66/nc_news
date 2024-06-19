@@ -26,3 +26,12 @@ export const getUser = () => {
     return response.data;
   });
 };
+
+export const updateArticleVotes = (article_id, inc_votes) => {
+  return api
+    .patch(`/articles/${article_id}`, { inc_votes })
+    .then((response) => {
+      //console.log(response.data);
+      return response.data;
+    });
+};
