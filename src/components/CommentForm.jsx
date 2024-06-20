@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { postComment, deleteComment } from "../api";
 
-const CommentForm = ({ article_id, addComment }) => {
+const CommentForm = ({ article_id, addComment, currentUser }) => {
   const [newComment, setNewComment] = useState("");
   const [isSubmittingComment, setIsSubmittingComment] = useState(false);
 
@@ -13,7 +13,7 @@ const CommentForm = ({ article_id, addComment }) => {
     event.preventDefault();
     setIsSubmittingComment(true);
 
-    postComment(article_id, "grumpy19", newComment)
+    postComment(article_id, currentUser, newComment)
       .then((newComment) => {
         addComment(newComment);
         setNewComment("");

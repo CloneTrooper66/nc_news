@@ -6,13 +6,14 @@ import Loading from "./Loading";
 import ErrorComponent from "./ErrorComponent";
 import Comments from "./Comments";
 import CommentForm from "./CommentForm";
-export default function ArticleDetail() {
+export default function ArticleDetail({ username }) {
   const { article_id } = useParams();
   const [article, setArticle] = useState(null);
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const currentUser = "grumpy19";
+  const currentUser = username;
+  // console.log(currentUser, "<<<<<<articleDetails");
 
   const handleVote = (inc_votes) => {
     const newVotes = article.votes + inc_votes;
@@ -42,7 +43,7 @@ export default function ArticleDetail() {
   }, [article_id]);
 
   const addComment = (newComment) => {
-    setComments([...comments, newComment]);
+    setComments([newComment, ...comments]);
   };
 
   const removeComment = (comment_id) => {
@@ -72,12 +73,12 @@ export default function ArticleDetail() {
       <Comments
         comments={comments}
         removeComment={removeComment}
-        currentUser={currentUser}
+        currentUser={username}
       />
       <CommentForm
         article_id={article_id}
         addComment={addComment}
-        currentUser={currentUser}
+        currentUser={username}
       />
     </div>
   );
