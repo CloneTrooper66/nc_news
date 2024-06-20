@@ -1,13 +1,37 @@
 import React, { useEffect, useState } from "react";
-import { getUser } from "../api";
+import { getUser, deleteComment } from "../api";
 
-const Comments = ({ comments }) => {
+const Comments = ({ comments, removeComment, currentUser }) => {
   const [users, setUsers] = useState([]);
+  const [confirmingCommentId, setConfirmingCommentId] = useState(null);
+
   useEffect(() => {
     getUser().then((data) => {
       setUsers(data);
     });
   }, []);
+
+  const handleDeleteClick = (comment_id) => {
+    setConfirmingCommentId(comment_id);
+  };
+
+  const handleConfirmDelete = () => {
+    if (confirmingCommentId !== null) {
+      deleteComment(confirmingCommentId)
+        .then(() => {
+          removeComment(confirmingCommentId);
+          alert("Comment deleted successfully!");
+          setConfirmingCommentId(null);
+        })
+        .catch((error) => {
+          alert("Failed to delete comment. Please try again.");
+        });
+    }
+  };
+
+  const handleCancelDelete = () => {
+    setConfirmingCommentId(null);
+  };
 
   return (
     <div>
@@ -16,10 +40,8 @@ const Comments = ({ comments }) => {
       ) : (
         <ul className="comments-list">
           {comments.map((comment) => {
-            const user = users.filter(
-              (user) => user.username === comment.author
-            )[0];
-
+            const user = users.find((user) => user.username === comment.author);
+            //  console.log(user, "<<<<<<");
             return (
               <li key={comment.comment_id} className="comment-item">
                 <div className="comment-box">
@@ -38,6 +60,22 @@ const Comments = ({ comments }) => {
                       Posted on
                       {new Date(comment.created_at).toLocaleDateString()}
                     </p>
+                    {comment.author === currentUser ? (
+                      <div>
+                        <button
+                          onClick={() => handleDeleteClick(comment.comment_id)}
+                        >
+                          Delete
+                        </button>
+                        {confirmingCommentId === comment.comment_id ? (
+                          <div>
+                            <p>Are you sure you want to delete this comment?</p>
+                            <button onClick={handleConfirmDelete}>Yes</button>
+                            <button onClick={handleCancelDelete}>No</button>
+                          </div>
+                        ) : null}
+                      </div>
+                    ) : null}
                   </div>
                 </div>
               </li>

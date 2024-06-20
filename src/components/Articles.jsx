@@ -49,10 +49,13 @@ export default function Articles() {
           <div className="article-details">
             <p className="article-votes">
               Total Votes: {article.votes}
-              <button className="like-button">Like</button>
-              <button className="dislike-button">Dislike</button>
+              {/* <button className="like-button">Like</button>
+              <button className="dislike-button">Dislike</button> */}
             </p>
             <p className="article-created">
+              <br />
+              <br />
+              <br />
               Created on {new Date(article.created_at).toLocaleDateString()}
             </p>
           </div>

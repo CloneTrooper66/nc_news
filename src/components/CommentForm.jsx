@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { postComment } from "../api";
+import { postComment, deleteComment } from "../api";
+
 const CommentForm = ({ article_id, addComment }) => {
   const [newComment, setNewComment] = useState("");
   const [isSubmittingComment, setIsSubmittingComment] = useState(false);

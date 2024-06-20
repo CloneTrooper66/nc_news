@@ -12,6 +12,7 @@ export default function ArticleDetail() {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const currentUser = "grumpy19";
 
   const handleVote = (inc_votes) => {
     const newVotes = article.votes + inc_votes;
@@ -44,6 +45,10 @@ export default function ArticleDetail() {
     setComments([...comments, newComment]);
   };
 
+  const removeComment = (comment_id) => {
+    setComments(comments.filter((comment) => comment.id !== comment_id));
+  };
+
   if (error) {
     return <ErrorComponent message={error.message} />;
   }
@@ -64,8 +69,16 @@ export default function ArticleDetail() {
       </button>
       <p>Created on {new Date(article.created_at).toLocaleDateString()}</p>
       <h2>Comments</h2>
-      <Comments comments={comments} />
-      <CommentForm article_id={article_id} addComment={addComment} />
+      <Comments
+        comments={comments}
+        removeComment={removeComment}
+        currentUser={currentUser}
+      />
+      <CommentForm
+        article_id={article_id}
+        addComment={addComment}
+        currentUser={currentUser}
+      />
     </div>
   );
 }
