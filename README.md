@@ -1,8 +1,40 @@
-# React + Vite
+# Project Name
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Link to Deployed Version] (https://brilliant-d6ad17.netlify.app/)
+[Link to back end repo ] (https://github.com/CloneTrooper66/Project)
 
-Currently, two official plugins are available:
+## Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This is my first full stack project. It allows users to login , write comments and like-dislike articles.
+
+## How to Use
+
+To use this app, follow these steps:
+
+1. Clone the repository from GitHub:
+
+   ```
+   git clone <repo-url>
+   ```
+
+   ```
+   Install dependencies:
+   ```
+
+   npm install
+
+   ```
+   Run the app locally:
+   ```
+
+   npm run dev
+
+   ```
+   Minimum Node Version
+   ```
+
+   v21.7.2
+
+   ##
+
+   This portfolio project was created as part of a Digital Skills Bootcamp in Software Engineering provided by [Northcoders](https://northcoders.com/)
