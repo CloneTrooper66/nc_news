@@ -6,6 +6,10 @@ import Home from "./components/Home";
 import Articles from "./components/Articles";
 import ArticleDetail from "./components/ArticleDetail";
 import UserList from "./components/UserList";
+import Topics from "./components/Topics";
+import Coding from "./components/Coding";
+import Football from "./components/Football";
+import Cooking from "./components/Cooking";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -26,13 +30,14 @@ function App() {
     setUsername("");
     localStorage.removeItem("username");
   };
-  //console.log(username, "<<<<< app.jsx");
+
   return (
     <>
       <Header username={username} onLogout={handleLogout} />
       <Routes>
         <Route path="/"></Route>
         <Route path="/home" element={<Home />}></Route>
+        <Route path="/topics" element={<Topics />}></Route>
         <Route path="/articles" element={<Articles />}></Route>
         <Route
           path="/articles/:article_id"
@@ -42,6 +47,9 @@ function App() {
           path="/login"
           element={<UserList onSelectUser={handleUserSelect} />}
         ></Route>
+        <Route path="/coding" element={<Coding />}></Route>
+        <Route path="/football" element={<Football />}></Route>
+        <Route path="/cooking" element={<Cooking />}></Route>
       </Routes>
     </>
   );

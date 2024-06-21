@@ -127,3 +127,46 @@
 h2 {
   text-align: center;
 }
+
+.topics-container {
+  max-width: 600px;
+  margin: 20% auto;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+}
+
+.topics-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.topics-list li {
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 4px;
+  font-size: 18px;
+}
+
+@media only screen and (max-width: 600px) {
+  .topics-container {
+    padding: 15px;
+  }
+
+  .topics-list li {
+    padding: 12px;
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .topics-container {
+    padding: 10px;
+  }
+
+  .topics-list li {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
