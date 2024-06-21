@@ -1,39 +1,38 @@
-import * as React from "react";
-import { useEffect, useState } from "react";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
 import { fetchArticles } from "../api";
-import { useParams } from "react-router-dom";
-import { Link, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Loading from "./Loading";
+import { Link, useSearchParams, useParams } from "react-router-dom";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
-
-export default function Articles() {
+export default function TopicList({ topic }) {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { article_id } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const sort = searchParams.get("sort") || "title";
   const order = searchParams.get("order") || "asc";
 
   useEffect(() => {
     setIsLoading(true);
-    fetchArticles(article_id)
+    fetchArticles()
       .then((data) => {
-        setArticles(data);
+        setArticles(
+          data.filter((object) => {
+            return object.topic === topic;
+          })
+        );
         setIsLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching articles:", error);
+        console.error("Error fetching topics:", error);
       });
-  }, [article_id]);
+  }, [topic]);
+
+  const handleSortChange = (e) => {
+    setSearchParams({ sort: e.target.value, order });
+  };
+
+  const handleOrderChange = (e) => {
+    setSearchParams({ sort, order: e.target.value });
+  };
 
   const sortedArticles = [...articles].sort((a, b) => {
     let comparison = 0;
@@ -49,14 +48,6 @@ export default function Articles() {
 
     return order === "asc" ? comparison : -comparison;
   });
-
-  const handleSortChange = (e) => {
-    setSearchParams({ sort: e.target.value, order });
-  };
-
-  const handleOrderChange = (e) => {
-    setSearchParams({ sort, order: e.target.value });
-  };
 
   return isLoading ? (
     <Loading />
@@ -91,6 +82,7 @@ export default function Articles() {
             />
             <div className="article-details">
               <p className="article-votes">Total Votes: {article.votes}</p>
+              <p className="article-comments">Comments: {article.comments}</p>
               <p className="article-created">
                 <br />
                 <br />

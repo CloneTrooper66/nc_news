@@ -7,10 +7,11 @@ import Articles from "./components/Articles";
 import ArticleDetail from "./components/ArticleDetail";
 import UserList from "./components/UserList";
 import Topics from "./components/Topics";
-import Coding from "./components/Coding";
-import Football from "./components/Football";
-import Cooking from "./components/Cooking";
+// import Coding from "./components/Coding";
+// import Football from "./components/Football";
+// import Cooking from "./components/Cooking";
 import NotFound from "./components/NotFound";
+import TopicList from "./components/TopicList";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -48,9 +49,12 @@ function App() {
           path="/login"
           element={<UserList onSelectUser={handleUserSelect} />}
         ></Route>
-        <Route path="/coding" element={<Coding />}></Route>
-        <Route path="/football" element={<Football />}></Route>
-        <Route path="/cooking" element={<Cooking />}></Route>
+        <Route path="/coding" element={<TopicList topic="coding" />}></Route>
+        <Route
+          path="/football"
+          element={<TopicList topic="football" />}
+        ></Route>
+        <Route path="/cooking" element={<TopicList topic="cooking" />}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </>
