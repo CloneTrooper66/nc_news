@@ -170,3 +170,23 @@ h2 {
     font-size: 14px;
   }
 }
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.error-heading {
+  color: #333;
+  font-size: 2em;
+  margin-top: 50px;
+}
+
+.error-message {
+  color: #666;
+  font-size: 1.2em;
+  margin-top: 20px;
+}

@@ -10,6 +10,7 @@ import Topics from "./components/Topics";
 import Coding from "./components/Coding";
 import Football from "./components/Football";
 import Cooking from "./components/Cooking";
+import NotFound from "./components/NotFound";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -50,6 +51,7 @@ function App() {
         <Route path="/coding" element={<Coding />}></Route>
         <Route path="/football" element={<Football />}></Route>
         <Route path="/cooking" element={<Cooking />}></Route>
+        <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </>
   );
