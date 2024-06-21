@@ -7,11 +7,9 @@ import Articles from "./components/Articles";
 import ArticleDetail from "./components/ArticleDetail";
 import UserList from "./components/UserList";
 import Topics from "./components/Topics";
-// import Coding from "./components/Coding";
-// import Football from "./components/Football";
-// import Cooking from "./components/Cooking";
 import NotFound from "./components/NotFound";
 import TopicList from "./components/TopicList";
+import Starting from "./components/Starting";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -37,7 +35,7 @@ function App() {
     <>
       <Header username={username} onLogout={handleLogout} />
       <Routes>
-        <Route path="/"></Route>
+        <Route path="/" element={<Starting />}></Route>
         <Route path="/home" element={<Home />}></Route>
         <Route path="/topics" element={<Topics />}></Route>
         <Route path="/articles" element={<Articles />}></Route>

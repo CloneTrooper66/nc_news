@@ -4,7 +4,6 @@ import { getUser, deleteComment } from "../api";
 const Comments = ({ comments, removeComment, currentUser }) => {
   const [users, setUsers] = useState([]);
   const [confirmingCommentId, setConfirmingCommentId] = useState(null);
-  //console.log(currentUser, "<<<<<<<<<comment");
 
   useEffect(() => {
     getUser().then((data) => {

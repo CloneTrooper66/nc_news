@@ -6,6 +6,7 @@ import Loading from "./Loading";
 import ErrorComponent from "./ErrorComponent";
 import Comments from "./Comments";
 import CommentForm from "./CommentForm";
+import NotFound from "./NotFound";
 export default function ArticleDetail({ username }) {
   const { article_id } = useParams();
   const [article, setArticle] = useState(null);
@@ -13,7 +14,6 @@ export default function ArticleDetail({ username }) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const currentUser = username;
-  // console.log(currentUser, "<<<<<<articleDetails");
 
   const handleVote = (inc_votes) => {
     const newVotes = article.votes + inc_votes;

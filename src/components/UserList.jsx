@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getUser } from "../api";
 import Loading from "./Loading";
+import { Link } from "react-router-dom";
 
 export default function UserList({ onSelectUser }) {
   const [users, setUsers] = useState([]);
@@ -11,7 +12,6 @@ export default function UserList({ onSelectUser }) {
     setIsLoading(true);
     getUser()
       .then((usersData) => {
-        //console.log(usersData);
         setUsers(usersData);
         setIsLoading(false);
       })
@@ -29,11 +29,11 @@ export default function UserList({ onSelectUser }) {
 
   return (
     <div>
-      <h2>User Login</h2>
+      <h2>Login In</h2>
       {isLoading ? (
         <Loading />
       ) : (
-        <ul>
+        <ul className="list">
           {users.map((user) => (
             <li key={user.username}>
               <button onClick={() => handleLogin(user)}>{user.username}</button>
@@ -41,6 +41,8 @@ export default function UserList({ onSelectUser }) {
           ))}
         </ul>
       )}
+
+      {selectedUser ? <Link to="/topics">Explore the topics</Link> : null}
       {selectedUser ? <p>Logged in as: {selectedUser.username}</p> : null}
     </div>
   );

@@ -69,6 +69,12 @@ export default function TopicList({ topic }) {
           <option value="desc">Descending</option>
         </select>
       </div>
+
+      <div>
+        <p></p>
+        <Link to="/articles">See all articles</Link>
+      </div>
+
       <div className="articles-wrapper">
         {sortedArticles.map((article) => (
           <article className="article-container" key={article.article_id}>

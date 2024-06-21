@@ -190,3 +190,35 @@ body {
   font-size: 1.2em;
   margin-top: 20px;
 }
+
+.container {
+  margin-left: 30%;
+  margin-top: 10%;
+  margin-right: 30%;
+  margin-bottom: 50%;
+  text-align: center;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 90%;
+}
+
+.heading {
+  color: #333;
+}
+
+.description {
+  color: #666;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.list {
+  list-style: none;
+}
+.list li {
+  padding: 5px 0;
+  margin: 0;
+}
